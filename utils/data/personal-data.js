@@ -14,6 +14,6 @@ export const personalData = {
   stackOverflow: '#',
   instagram: 'https://www.instagram.com/dixit_vaghela11/',
   leetcode: '#',
-  devUsername: "said7388",
+  devUsername: "#",
   resume: "https://drive.google.com/file/d/1GfKXD2YbEv-jdv8IFpQhBlFqCONNsovb/view?usp=drive_link"
 }
