@@ -1,1 +1,8 @@
-16 
+[build]
+  node_version = "18.18.0"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_PUBLIC_APP_URL = "dixportfollio.netlify.app"
+  TELEGRAM_BOT_TOKEN = "7916286619:AAF7mR2N37uuJKOaPyLKnb_mZrfOjZBv8hc"
