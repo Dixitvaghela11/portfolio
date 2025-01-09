@@ -1,20 +1,20 @@
 export const experiences = [
   {
     id: 1,
-    title: 'Software Engineer I',
-    company: "Teton Private Ltd.",
-    duration: "(Jan 2022 - Present)"
+    title: 'Web Developer',
+    company: "Kiran Hospital is Multi Super Speciality Hospital & Research Center.",
+    duration: "(dec 2024 - Present)"
   },
   {
     id: 2,
-    title: "FullStack Developer",
-    company: "Fiverr (freelance)",
-    duration: "(Jun 2021 - Jan 2022)"
+    title: "ASP.NET Developer Intern",
+    company: "Invica Infotech Pvt. Ltd.",
+    duration: "(Jul 2024 - Dec 2024)"
   },
   {
     id: 3,
-    title: "Self Employed",
-    company: "Code and build something in everyday.",
-    duration: "(Jan 2018 - Present)"
+    title: "Data Entry Operator",
+    company: "Can't Tech.",
+    duration: "(Jan 2022 - Jan 2023)"
   }
 ]

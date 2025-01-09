@@ -1,26 +1,27 @@
-const path = require('path')
- 
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '**',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
       {
-        protocol: 'https',
-        hostname: 'media.dev.to',
-        pathname: '**',
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
       },
       {
-        protocol: 'https',
-        hostname: 'media2.dev.to',
-        pathname: '**',
+        protocol: "https",
+        hostname: "imgur.com",
       },
     ],
   },
-}
+  experimental: {
+    serverActions: {
+      // Add any specific server actions configuration here
+    },
+  },
+};
+
+module.exports = nextConfig;
