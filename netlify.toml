@@ -1,0 +1,8 @@
+[build]
+  node_version = "18.18.0"  # Specify the Node.js version
+  command = "npm run build"  # Build command for Next.js
+  publish = ".next"          # Publish directory for Next.js
+
+[build.environment]
+  NEXT_PUBLIC_APP_URL = "dixportfollio.netlify.app"  # Your app URL
+  TELEGRAM_BOT_TOKEN = "7916286619:AAF7mR2N37uuJKOaPyLKnb_mZrfOjZBv8hc"  # Your Telegram bot token
