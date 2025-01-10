@@ -3,56 +3,47 @@ import { timeConverter } from '@/utils/time-converter';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsHeartFill } from 'react-icons/bs';
-import { FaCommentAlt } from 'react-icons/fa';
+import { FaCommentAlt, FaTools } from 'react-icons/fa';
 
 function BlogCard({ blog }) {
 
   return (
-    <div className="border border-[#1d293a] hover:border-[#464c6a] transition-all duration-500 bg-[#1b203e] rounded-lg relative group"
-    >
-      <div className="h-44 lg:h-52 w-auto cursor-pointer overflow-hidden rounded-t-lg">
-        <Image
-          src={blog?.cover_image}
-          height={1080}
-          width={1920}
-          alt=""
-          className='h-full w-full group-hover:scale-110 transition-all duration-300'
-        />
+    <div id='blogs' className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+      <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+
+      <div className="flex justify-center -translate-y-[1px]">
+        <div className="w-3/4">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+        </div>
       </div>
-      <div className="p-2 sm:p-3 flex flex-col">
-        <div className="flex justify-between items-center text-[#16f2b3] text-sm">
-          <p>{timeConverter(blog.published_at)}</p>
-          <div className="flex items-center gap-3">
-            <p className="flex items-center gap-1">
-              <BsHeartFill />
-              <span>{blog.public_reactions_count}</span>
-            </p>
-            {blog.comments_count > 0 &&
-              <p className="flex items-center gap-1">
-                <FaCommentAlt />
-                <span>{blog.comments_count}</span>
-              </p>
-            }
+
+      <div className="flex justify-center my-5 lg:py-8">
+        <div className="flex items-center">
+          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
+            Blogs
+          </span>
+          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+        </div>
+      </div>
+
+      {/* Under Development Message */}
+      <div className="flex flex-col items-center justify-center py-20 px-4">
+        <div className="animate-bounce mb-8">
+          <FaTools className="text-6xl text-violet-500" />
+        </div>
+        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4">
+          Blog Section Under Development
+        </h2>
+        <p className="text-gray-400 text-center max-w-md">
+          We&apos;re working hard to bring you amazing content. Please check back soon!
+        </p>
+        <div className="mt-8 relative group">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-violet-600 rounded-lg blur opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+          <div className="relative px-6 py-3 bg-[#1a1443] rounded-lg">
+            <span className="text-white">Coming Soon</span>
           </div>
         </div>
-        <Link target='_blank' href={blog.url}>
-          <p className='my-2 lg:my-3 cursor-pointer text-lg text-white sm:text-xl font-medium hover:text-violet-500'>
-            {blog.title}
-          </p>
-        </Link>
-        <p className='mb-2 text-sm text-[#16f2b3]'>
-          {`${blog.reading_time_minutes} Min Read`}
-        </p>
-        <p className='text-sm lg:text-base text-[#d3d8e8] pb-3 lg:pb-6 line-clamp-3'>
-          {blog.description}
-        </p>
-        {/* <div className="">
-          <Link target='_blank' href={blog.url}>
-            <button className='bg-violet-500 text-white px-3 py-1.5 rounded-full text-xs'>
-              Read More
-            </button>
-          </Link>
-        </div> */}
       </div>
     </div>
   );
