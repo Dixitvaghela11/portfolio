@@ -108,7 +108,7 @@ function Skills() {
             '--scrollbar-track-height': '8px'
           }}
         >
-          <div className="flex gap-4 md:gap-6 animate-slide">
+          <div className="flex gap-4 md:gap-6 animate-slide-fastest">
             {tripleSkills.map((skill, id) => {
               const skillImg = skillsImage(skill);
               if (!skillImg) return null;
@@ -116,12 +116,12 @@ function Skills() {
               return (
                 <div
                   className="w-32 md:w-36 min-w-fit h-fit flex flex-col items-center justify-center 
-                           transition-all duration-500 m-2 md:m-3 rounded-lg group relative 
+                           transition-all duration-200 m-2 md:m-3 rounded-lg group relative 
                            hover:scale-[1.15] cursor-pointer flex-shrink-0 animate-fadeIn"
                   key={`${skill}-${id}`}
                   style={{
                     scrollSnapAlign: 'start',
-                    animationDelay: `${id * 100}ms`
+                    animationDelay: `${id * 25}ms`
                   }}
                 >
                   <div className="h-full w-full rounded-lg border border-[#1f223c] bg-[#11152c] 
