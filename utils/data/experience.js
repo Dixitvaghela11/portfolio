@@ -3,7 +3,7 @@ export const experiences = [
     id: 1,
     title: 'Web Developer',
     company: "Kiran Hospital is Multi Super Speciality Hospital & Research Center.",
-    duration: "(dec 2024 - Present)"
+    duration: "(Dec 2024 - Present)"
   },
   {
     id: 2,
