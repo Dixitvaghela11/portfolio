@@ -35,7 +35,6 @@ body {
 }
 
 .sticky-card {
-  // padding-top: calc(var(--index) * 2.5rem);
   top: calc(var(--index) * 4rem);
 }
 
@@ -140,4 +139,530 @@ body {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+.loader {
+  --path: #16f2b3;
+  --dot: #f40af0;
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    background: var(--dot);
+    top: 37px;
+    left: 19px;
+    transform: translate(-18px, -18px);
+    animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    rect, polygon, circle {
+      fill: none;
+      stroke: var(--path);
+      stroke-width: 2px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    polygon {
+      stroke-dasharray: 145 76 145 76;
+      stroke-dashoffset: 0;
+      animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+
+    rect {
+      stroke-dasharray: 192 64 192 64;
+      stroke-dashoffset: 0;
+      animation: pathRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+
+    circle {
+      stroke-dasharray: 150 50 150 50;
+      stroke-dashoffset: 75;
+      animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+
+  &.triangle {
+    width: 48px;
+
+    &:before {
+      left: 21px;
+      transform: translate(-10px, -18px);
+      animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+}
+
+@keyframes pathTriangle {
+  33% {
+    stroke-dashoffset: 74;
+  }
+  66% {
+    stroke-dashoffset: 147;
+  }
+  100% {
+    stroke-dashoffset: 221;
+  }
+}
+
+@keyframes dotTriangle {
+  33% {
+    transform: translate(0, 0);
+  }
+  66% {
+    transform: translate(10px, -18px);
+  }
+  100% {
+    transform: translate(-10px, -18px);
+  }
+}
+
+@keyframes pathRect {
+  25% {
+    stroke-dashoffset: 64;
+  }
+  50% {
+    stroke-dashoffset: 128;
+  }
+  75% {
+    stroke-dashoffset: 192;
+  }
+  100% {
+    stroke-dashoffset: 256;
+  }
+}
+
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -36px);
+  }
+  100% {
+    transform: translate(-18px, -18px);
+  }
+}
+
+@keyframes pathCircle {
+  25% {
+    stroke-dashoffset: 125;
+  }
+  50% {
+    stroke-dashoffset: 175;
+  }
+  75% {
+    stroke-dashoffset: 225;
+  }
+  100% {
+    stroke-dashoffset: 275;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes grid-movement {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-grid-movement {
+  animation: grid-movement 8s linear infinite;
+}
+
+.glow-bar {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0.7;
+  }
+}
+
+.bg-grid-white {
+  background-size: 30px 30px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+
+// 3D Cube
+.cube {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cube-spin 20s linear infinite;
+  
+  &-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    backdrop-filter: blur(5px);
+    
+    &.front  { transform: translateZ(25px); }
+    &.back   { transform: translateZ(-25px) rotateY(180deg); }
+    &.right  { transform: rotateY(90deg) translateZ(25px); }
+    &.left   { transform: rotateY(-90deg) translateZ(25px); }
+    &.top    { transform: rotateX(90deg) translateZ(25px); }
+    &.bottom { transform: rotateX(-90deg) translateZ(25px); }
+  }
+}
+
+// Grid Background
+.grid-bg {
+  position: absolute;
+  inset: -100%;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+  transform-origin: center;
+  animation: grid-spin 20s linear infinite;
+}
+
+// New Animations
+@keyframes cube-spin {
+  from { transform: rotateX(0) rotateY(0) rotateZ(0); }
+  to { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+}
+
+@keyframes grid-spin {
+  from { transform: rotate(0deg) scale(1.5); }
+  to { transform: rotate(360deg) scale(1.5); }
+}
+
+@keyframes float-random {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(10px, -10px, 20px) rotate(5deg);
+  }
+  50% {
+    transform: translate3d(-5px, 15px, -10px) rotate(-5deg);
+  }
+  75% {
+    transform: translate3d(-15px, -5px, 15px) rotate(3deg);
+  }
+}
+
+@keyframes orb-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(30px, -30px, 0) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+// Glitch Text Effect
+.glitch-text {
+  position: relative;
+  
+  &-main, &-r, &-b {
+    display: block;
+  }
+  
+  &-r, &-b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+  
+  &-r {
+    animation: glitch-r 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    color: #f0f;
+  }
+  
+  &-b {
+    animation: glitch-b 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
+    color: #0ff;
+  }
+}
+
+@keyframes glitch-r {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-b {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+// Enhanced hover effects
+.transform-hover {
+  transition: transform 0.3s ease-out;
+  
+  &:hover {
+    transform: translateZ(20px) rotateX(10deg);
+  }
+}
+
+// Enhance existing animations
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+.glow-bar::after {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(12px);
+  }
+}
+
+// Enhanced Cursor Follow Styles
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(124, 58, 237, 0.9);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, opacity 0.3s ease-in-out;
+  mix-blend-mode: difference;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+  will-change: transform, opacity;
+}
+
+.cursor-follow {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.75;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-out;
+  will-change: transform, opacity;
+
+  .cursor-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(124, 58, 237, 0.5);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: ringPulse 1.5s infinite;
+    will-change: transform, opacity;
+
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.5s; }
+    &:nth-child(3) { animation-delay: 1s; }
+  }
+
+  &.hovering {
+    .cursor-ring {
+      animation: ringHover 1s infinite;
+    }
+  }
+
+  &.clicking {
+    .cursor-ring {
+      animation: ringClick 0.5s forwards;
+    }
+  }
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2) translateZ(20px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes ringHover {
+  0% {
+    transform: scale(1) rotateX(0) translateZ(0);
+  }
+  50% {
+    transform: scale(1.3) rotateX(180deg) translateZ(30px);
+  }
+  100% {
+    transform: scale(1) rotateX(360deg) translateZ(0);
+  }
+}
+
+@keyframes ringClick {
+  0% {
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    transform: scale(0.8) translateZ(-20px);
+  }
+  100% {
+    transform: scale(1.1) translateZ(10px);
+  }
+}
+
+// Enhanced hover effects
+a, button, input, select, textarea, [role="button"] {
+  &:hover ~ .cursor-follow {
+    .cursor-rings {
+      animation-duration: 2s;
+      border-width: 3px;
+    }
+  }
+}
+
+// Magnetic effect for links
+a, button {
+  position: relative;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    
+    ~ .cursor-follow {
+      transform: translate(-50%, -50%) scale(1.2) translateZ(20px);
+    }
+  }
+}
+
+// Hide default cursor
+body {
+  cursor: none;
+  
+  * {
+    cursor: none;
+  }
+  
+  @media (max-width: 768px) {
+    cursor: auto;
+    * {
+      cursor: auto;
+    }
+    .cursor-dot,
+    .cursor-follow {
+      display: none;
+    }
+  }
+}
+
+// Add these new keyframes
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    transform: scale(1.1) translateZ(10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateZ(0);
+  }
+  50% {
+    transform: translateZ(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-follow {
+    display: none !important;
+  }
 }
