@@ -9,40 +9,62 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
-import LoadingPage from "./components/loading";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [mainContent, setMainContent] = useState(false);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-
-  // Prevent scroll while loading
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isLoading]);
+    // Hide all content initially
+    document.body.style.overflow = 'hidden';
+    
+    // Create and append loading iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = '/loading.html';
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    document.body.appendChild(iframe);
+
+    // Listen for the loading complete message
+    window.addEventListener('message', function(event) {
+      if (event.data === 'loadingComplete') {
+        iframe.remove();
+        document.body.style.overflow = 'unset';
+        setIsLoading(false);
+        setTimeout(() => setMainContent(true), 100);
+      }
+    });
+
+    // Fallback timer in case message isn't received
+    setTimeout(() => {
+      if (isLoading) {
+        iframe.remove();
+        document.body.style.overflow = 'unset';
+        setIsLoading(false);
+        setTimeout(() => setMainContent(true), 100);
+      }
+    }, 3100);
+  }, []);
+
+  if (!mainContent) {
+    return null;
+  }
 
   return (
-    <>
-      {isLoading && <LoadingPage onLoadingComplete={handleLoadingComplete} />}
-      <main className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <HeroSection />
-        <AboutSection />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Education />
-        <Blog />
-        <ContactSection />
-      </main>
-    </>
+    <main className="transition-opacity duration-500 opacity-100">
+      <HeroSection />
+      <AboutSection />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Education />
+      <Blog />
+      <ContactSection />
+    </main>
   );
 }
