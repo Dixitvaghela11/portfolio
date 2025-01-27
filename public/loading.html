@@ -34,9 +34,6 @@
         <div class="ring"></div>
     </div>
     
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
     <div class="decoration">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -59,82 +56,11 @@
 
     <script>
         
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        const countdown = document.querySelector('.countdown');
-        
         // Check if device is touch-enabled
         const isTouchDevice = () => {
             return (('ontouchstart' in window) ||
                     (navigator.maxTouchPoints > 0) ||
                     (navigator.msMaxTouchPoints > 0));
-        }
-        
-        // Only add mouse effects if not a touch device
-        if (!isTouchDevice()) {
-            // Add mousemove event to document
-            document.addEventListener('mousemove', (e) => {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                
-                // Ensure cursor elements exist before manipulating
-                if (cursor && cursorFollower) {
-                    // Update cursor positions with requestAnimationFrame for smooth animation
-                    requestAnimationFrame(() => {
-                        // Main cursor
-                        cursor.style.left = `${mouseX}px`;
-                        cursor.style.top = `${mouseY}px`;
-                        cursor.style.transform = 'translate(-50%, -50%)';
-                        
-                        // Follower cursor with delay
-                        cursorFollower.style.left = `${mouseX}px`;
-                        cursorFollower.style.top = `${mouseY}px`;
-                        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-                    });
-                }
-                
-                // Add hover effect for interactive elements
-                document.querySelectorAll('a, button, .interactive').forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursor.style.transform = 'translate(-50%, -50%) scale(0.5)';
-                        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    });
-                    
-                    el.addEventListener('mouseleave', () => {
-                        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-                    });
-                });
-                
-                // 3D effect for countdown
-                if (countdown) {
-                    const rect = countdown.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    
-                    const angleX = (mouseY - centerY) / window.innerHeight * 20;
-                    const angleY = (mouseX - centerX) / window.innerWidth * 20;
-                    
-                    countdown.style.transform = `
-                        translate(-50%, -50%)
-                        rotateX(${-angleX}deg)
-                        rotateY(${angleY}deg)
-                        translateZ(20px)
-                    `;
-                }
-            });
-            
-            // Add mouseleave event to document
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-                cursorFollower.style.opacity = '0';
-            });
-            
-            // Add mouseenter event to document
-            document.addEventListener('mouseenter', () => {
-                cursor.style.opacity = '1';
-                cursorFollower.style.opacity = '1';
-            });
         }
         
         // Handle window resize

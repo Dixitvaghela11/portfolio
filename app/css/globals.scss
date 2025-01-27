@@ -16,9 +16,10 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #0d1224;
-  cursor: auto;
+  cursor: url('/cursor/pointer.png'), pointer !important;
+  
   * {
-    cursor: auto;
+    cursor: url('/cursor/pointer.png'), pointer !important;
   }
 }
 
@@ -523,5 +524,20 @@ body {
   }
   50% {
     transform: translateZ(10px);
+  }
+}
+
+// Interactive elements cursor
+a,
+button,
+[role="button"],
+.interactive,
+input[type="submit"],
+input[type="button"],
+.clickable {
+  cursor: url('/cursor/pointer.png'), pointer !important;
+  
+  &:hover {
+    cursor: url('/cursor/pointer.png'), pointer !important;
   }
 }

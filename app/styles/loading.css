@@ -214,11 +214,39 @@ body {
     align-items: center;
     perspective: 1200px;
     overflow: hidden;
-    cursor: url('/cursor/pointer.png');
+    cursor: none; /* Hide default cursor */
 }
 
-            
+/* Custom Cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    background: rgba(79, 70, 229, 0.6);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
 
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: difference;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
 
 .countdown {
     position: fixed;
@@ -528,8 +556,6 @@ body {
 }
 
 /* Enhanced cursor effects */
-/* Comment out or remove these sections */
-/*
 .cursor {
     mix-blend-mode: difference;
     filter: blur(1px);
@@ -542,7 +568,6 @@ body {
     mix-blend-mode: difference;
     transform-style: preserve-3d;
 }
-*/
 
 /* Responsive Design */
 /* Mobile First Approach */
