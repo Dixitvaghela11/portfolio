@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import NeonCursor from './NeonCursor';
 
 const LoadingPage = ({ onLoadingComplete }) => {
   const [count, setCount] = useState(0);
@@ -51,8 +52,19 @@ const LoadingPage = ({ onLoadingComplete }) => {
     return () => clearInterval(interval);
   }, [onLoadingComplete]);
 
+  useEffect(() => {
+    document.body.classList.add('loading');
+    document.body.classList.add('no-cursor');
+    
+    return () => {
+      document.body.classList.remove('loading');
+      document.body.classList.remove('no-cursor');
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-[#0d1224] flex flex-col items-center justify-center z-50 perspective-1000 overflow-hidden">
+    <div className="fixed inset-0 bg-[#0d1224] flex flex-col items-center justify-center z-50 perspective-1000 overflow-hidden no-cursor">
+      <NeonCursor />
       {/* 3D Background Elements */}
       <div className="absolute inset-0 perspective-1000">
         {/* Floating Cubes */}

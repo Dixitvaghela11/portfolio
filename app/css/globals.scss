@@ -541,3 +541,36 @@ input[type="button"],
     cursor: url('/cursor/pointer.png'), pointer !important;
   }
 }
+
+.no-cursor {
+  cursor: none !important;
+}
+
+body.loading {
+  * {
+    cursor: none !important;
+  }
+  
+  #cursor-container {
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: screen;
+  }
+}
+
+/* Interactive elements cursor */
+body.loading {
+  a,
+  button,
+  [role="button"],
+  .interactive,
+  input[type="submit"],
+  input[type="button"],
+  .clickable {
+    cursor: none !important;
+    
+    &:hover {
+      cursor: none !important;
+    }
+  }
+}

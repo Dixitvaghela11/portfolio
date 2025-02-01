@@ -214,8 +214,14 @@ body {
     align-items: center;
     perspective: 1200px;
     overflow: hidden;
-    cursor: url('/cursor/pointer.png');
+    cursor: url('/cursor/pointer.png'), pointer !important;
+  
+    * {
+      cursor: url('/cursor/pointer.png'), pointer !important;
+    }
 }
+
+
 
             
 
@@ -526,23 +532,33 @@ body {
         transform: translateZ(40px) rotateX(5deg);
     }
 }
-
-/* Enhanced cursor effects */
-/* Comment out or remove these sections */
-/*
-.cursor {
-    mix-blend-mode: difference;
-    filter: blur(1px);
-    transform-style: preserve-3d;
+#cursor-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: screen;
+    will-change: transform;
 }
 
+#cursor-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Remove or comment out any existing cursor styles */
+.cursor,
 .cursor-follower {
-    border: 2px solid rgba(79, 70, 229, 0.3);
-    background: transparent;
-    mix-blend-mode: difference;
-    transform-style: preserve-3d;
+    display: none !important;
 }
-*/
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    #cursor-container {
+        display: none;
+    }
+}
 
 /* Responsive Design */
 /* Mobile First Approach */
@@ -689,5 +705,24 @@ body {
     
     .countdown:hover {
         transform: none;
+    }
+}
+
+/* Hide default cursor */
+.no-cursor {
+    cursor: none !important;
+}
+
+body.loading {
+    cursor: none !important;
+    * {
+        cursor: none !important;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    #cursor-container {
+        display: none;
     }
 }
