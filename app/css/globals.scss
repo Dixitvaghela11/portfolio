@@ -16,11 +16,6 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #0d1224;
-  cursor: url('/cursor/pointer.png'), pointer !important;
-  
-  * {
-    cursor: url('/cursor/pointer.png'), pointer !important;
-  }
 }
 
 #sticky-card-1 {
@@ -524,53 +519,5 @@ body {
   }
   50% {
     transform: translateZ(10px);
-  }
-}
-
-// Interactive elements cursor
-a,
-button,
-[role="button"],
-.interactive,
-input[type="submit"],
-input[type="button"],
-.clickable {
-  cursor: url('/cursor/pointer.png'), pointer !important;
-  
-  &:hover {
-    cursor: url('/cursor/pointer.png'), pointer !important;
-  }
-}
-
-.no-cursor {
-  cursor: none !important;
-}
-
-body.loading {
-  * {
-    cursor: none !important;
-  }
-  
-  #cursor-container {
-    pointer-events: none;
-    z-index: 99999;
-    mix-blend-mode: screen;
-  }
-}
-
-/* Interactive elements cursor */
-body.loading {
-  a,
-  button,
-  [role="button"],
-  .interactive,
-  input[type="submit"],
-  input[type="button"],
-  .clickable {
-    cursor: none !important;
-    
-    &:hover {
-      cursor: none !important;
-    }
   }
 }
