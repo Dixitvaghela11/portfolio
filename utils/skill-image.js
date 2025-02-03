@@ -19,7 +19,7 @@ import react from '../app/assets/svg/skills/react.svg';
 import tailwind from '../app/assets/svg/skills/tailwind.svg';
 import wordpress from '../app/assets/svg/skills/wordpress.svg';
 import netlify from '../app/assets/svg/skills/netlify.svg';
-import powerbi from '../app/assets/svg/skills/microsoft-power-bi.svg';
+import powerbi from '../app/assets/svg/skills/powerbi.svg';
 import canva from '../app/assets/svg/skills/canva.svg';
 
 export const skillsImage = (skill) => {
